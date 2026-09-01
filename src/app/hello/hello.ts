@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   imports: [],
@@ -14,6 +14,11 @@ export class Hello {
     this.isDisabled = !this.isDisabled;
   }
   protected count = signal(0);
+  protected doubleCount = computed(() => this.count() * 2);
+  // getdoubleCount(){
+  //   console.log('Method was called!')
+  //   return this.count()*2;
+  // }
   increaseCounter() {
     this.count.update((value) => value + 1);
   }
@@ -21,5 +26,5 @@ export class Hello {
     this.count.update((value) => value - 1);
   }
   resetCounter() {
-    this.count.set(10);
+    this.count.set(0);
 }}
