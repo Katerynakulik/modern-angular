@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   imports: [],
@@ -19,6 +19,11 @@ export class Hello {
   //   console.log('Method was called!')
   //   return this.count()*2;
   // }
+
+private readonly countLog=effect(()=>{
+  console.log('Count changed:',this.count())
+});
+
   increaseCounter() {
     this.count.update((value) => value + 1);
   }
