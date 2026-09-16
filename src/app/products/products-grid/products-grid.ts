@@ -55,4 +55,9 @@ export class ProductsGrid {
   // protected trimSearch(){
   //   this.searchTeam.update((value) => value.trim())
   // }
+
+  protected onAddToCard(product: Product){
+    console.log('Added to Cart:', product.name)
+
+  }
 }
