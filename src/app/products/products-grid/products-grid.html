@@ -1,4 +1,12 @@
 <div class="products-container">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search Products</mat-label>
+    <input matInput [(ngModel)]="searchTeam" placeholder="e.g. headphones"/>
+  </mat-form-field>
+
+  <p class="search-preview">
+    Search Term: {{searchTeam()}}
+  </p>
 
   <div class="products-grid">
     @for (product of products(); track product.id) {
