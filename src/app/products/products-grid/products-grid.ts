@@ -1,5 +1,5 @@
 import { Product } from './../product';
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { ProductCard } from '../product-card/product-card';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -39,10 +39,20 @@ export class ProductsGrid {
     }
   ])
 
+  protected readonly filteredProducts = computed(()=>{
+    const term = this.searchTeam().toLocaleLowerCase().trim()
+    if (!term) return this.products();
+
+    return this.products().filter((product)=>
+      product.name.toLocaleLowerCase().includes(term) ||
+      product.description.toLocaleLowerCase().includes(term)
+    )
+  })
+
   protected clearSearch(){
     this.searchTeam.set('')
   }
-  protected trimSearch(){
-    this.searchTeam.update((value) => value.trim())
-  }
+  // protected trimSearch(){
+  //   this.searchTeam.update((value) => value.trim())
+  // }
 }
